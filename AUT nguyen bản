@@ -1,7 +1,36 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/chimnguu/ngu/master/cyberuilib.lua"))()
 local w = lib:CreateWindow("A Universe Time")
+local player = ''
+local kill = false
 local item = false
-w:Toggle("Item TP",function(d)
+local box = w:TextBox("TypeNameHere",function(ccc)
+player = ccc
+end)
+local toggle = w:Toggle("On/Off Kill",function(cc)
+kill = cc
+end)
+spawn(function()
+while true do wait(0.2)
+if kill == true then
+ local args = {
+    [1] = game:GetService("Players")[player].Character.Humanoid,
+    [2] = 9999999999999999999,
+    [3] = Vector3.new(7.80772257, -6.03624244e-07, 1.74340606),
+    [4] = "rbxassetid://260430079",
+    [5] = 0.3,
+    [6] = "rbxassetid://241837157",
+    [7] = 20,
+    [8] = 0.5,
+    [9] = false,
+    [10] = false,
+    [11] = false
+}
+game:GetService("ReplicatedStorage").newremotes.dmgsystem.basicdmg:FireServer(unpack(args))
+end
+end
+
+end)
+local toggle = w:Toggle("Item TP",function(d)
 item = d
 end)
 pcall(function()
